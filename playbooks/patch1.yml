@@ -1,0 +1,23 @@
+---
+- name: gather the kernal version and hostname of dev server
+  hosts: dev
+  become: yes
+  
+  tasks:
+    - name: to get kernal version
+      ansible.builtin.command: uname -r
+      register: kernal_result
+     # changed_when: false
+    
+    - name: print the output
+      debug:
+        msg: "the kernal version is {{ kernal_result.stdout }}" 
+       # var: hostname_result
+
+    - name: to get the hostname
+      ansible.builtin.command: hostname
+      register: hostname_detail
+    
+    - name: print the host details
+      debug:
+        msg: "the hostname is {{ hostname_detail.stdout }}"
