@@ -1,0 +1,9 @@
+- name: Check Apache status and restart if needed
+  hosts: dev
+  become: yes
+  tasks:
+    - name: Check Apache service status
+      ansible.builtin.command: sudo systemctl is-active httpd
+      register: apache_status
+      changed_when: "'inactive' in apache_status.stdout"  
+

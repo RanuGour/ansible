@@ -1,0 +1,13 @@
+---
+- name: Check uptime without marking changed
+  hosts: dev
+  become: yes
+  tasks:
+    - name: Check system uptime
+      command: uptime
+      register: uptime_output
+      changed_when: false  
+
+    - name: Show uptime output
+      debug:
+        msg: "Server uptime is: {{ uptime_output.stdout }}"

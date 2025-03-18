@@ -1,0 +1,18 @@
+---
+- name: install git and restart the service
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: install git 
+      yum:
+        name: git
+        state: present
+
+    - name: verify git installed or not
+      command: git --version
+      register: git_version
+     
+       #debug:
+       #  msg: "git version is: {{ git_version.stdout }}"
+

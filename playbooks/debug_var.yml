@@ -1,0 +1,13 @@
+- name: Debug list example
+  hosts: localhost
+  tasks:
+    - name: Define list variable
+      set_fact:
+        my_list:
+          - apple
+          - banana
+          - cherry
+
+    - name: Print the list
+      debug:
+        var: my_list

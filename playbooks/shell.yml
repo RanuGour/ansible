@@ -1,0 +1,10 @@
+---
+- name: Check home directory Size
+  hosts: dev
+  become: yes
+  tasks:
+   - name: Get home directory size
+     shell: du -sh /home/ansible
+     register: home_Size
+   - debug:
+      msg: "ansible user home directory size: {{ home_Size.stdout }}"

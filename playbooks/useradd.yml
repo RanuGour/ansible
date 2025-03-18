@@ -1,0 +1,14 @@
+---
+- name: create user
+  hosts: dev
+  become: yes
+  vars_files:
+   - secret.yml
+  tasks:
+   - user:
+      name: kittu
+      password: "{{ user_password | password_hash('sha512') }}"
+      shell: /bin/bash
+      createhome: yes
+   - debug:
+      msg: "user 'kittu' has been created"
